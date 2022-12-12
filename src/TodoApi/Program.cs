@@ -13,6 +13,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/todoitems", () => "Hello World!");
+
+app.MapGet("/todoitems/{id}", (int id) => "Hello World!");
+
+app.MapPost("/todoitems", () =>
+{
+    return Results.Ok();
+});
+
+app.MapPut("/todoitems/{id}", (int id) =>
+{
+    return Results.Ok(id); });
+
+app.MapDelete("/todoitems/{id}", (int id) =>
+{
+    return Results.NoContent();
+});
 
 app.Run();
