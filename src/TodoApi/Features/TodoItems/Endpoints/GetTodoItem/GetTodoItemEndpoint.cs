@@ -1,6 +1,6 @@
 using TodoApi.Infrastructure;
 
-namespace TodoApi.Features.TodoItems.GetTodoItem;
+namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
 
 public class GetTodoItemEndpoint
 {

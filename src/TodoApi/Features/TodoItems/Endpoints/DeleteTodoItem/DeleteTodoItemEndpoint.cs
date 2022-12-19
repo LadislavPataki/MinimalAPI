@@ -1,7 +1,7 @@
-using TodoApi.Features.TodoItems.Models;
+using TodoApi.Features.TodoItems.DomainModels;
 using TodoApi.Infrastructure;
 
-namespace TodoApi.Features.TodoItems.DeleteTodoItem;
+namespace TodoApi.Features.TodoItems.Endpoints.DeleteTodoItem;
 
 public class DeleteTodoItemEndpoint
 {

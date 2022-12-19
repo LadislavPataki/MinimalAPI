@@ -1,11 +1,11 @@
 version: '3.9'
 
-services:
-  
-  sqldata:
-    image: mcr.microsoft.com/mssql/server:2017-latest
+services:  
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      - SA_PASSWORD=Pass@word
+      - MSSQL_SA_PASSWORD=Pass@w0rd!
       - ACCEPT_EULA=Y
     ports:
-      - "5434:1433"
+      - "1433:1433"
+    restart: always

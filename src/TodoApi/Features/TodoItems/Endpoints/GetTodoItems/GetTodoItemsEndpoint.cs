@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Infrastructure;
 
-namespace TodoApi.Features.TodoItems.GetTodoItems;
+namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItems;
 
 public class GetTodoItemsEndpoint
 {

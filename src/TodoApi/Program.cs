@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Features.TodoItems.CreateTodoItem;
-using TodoApi.Features.TodoItems.DeleteTodoItem;
-using TodoApi.Features.TodoItems.GetTodoItem;
-using TodoApi.Features.TodoItems.GetTodoItems;
+using TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
+using TodoApi.Features.TodoItems.Endpoints.DeleteTodoItem;
+using TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
+using TodoApi.Features.TodoItems.Endpoints.GetTodoItems;
 using TodoApi.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +17,8 @@ services.AddSwaggerGen();
 // register db context
 services.AddDbContext<TodoItemsDbContext>(options =>
 {
-    options.UseSqlServer(configuration.GetConnectionString("TodoItemsDbConnection"),
+    var connectionString = configuration.GetConnectionString("TodoItemsDbConnection");
+    options.UseSqlServer(connectionString,
         sqlServerOptions =>
         {
             sqlServerOptions.MigrationsAssembly(typeof(TodoItemsDbContext).Assembly.FullName);

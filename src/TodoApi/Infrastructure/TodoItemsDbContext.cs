@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TodoApi.Features.TodoItems.Models;
+using TodoApi.Features.TodoItems.DomainModels;
 
 namespace TodoApi.Infrastructure;
 
@@ -26,8 +26,13 @@ public class TodoItemsDbContextFactory : IDesignTimeDbContextFactory<TodoItemsDb
     {
         var optionsBuilder = new DbContextOptionsBuilder<TodoItemsDbContext>();
         optionsBuilder.UseSqlServer(
-            @"Server=127.0.0.1,1433;Database=TodoItemsDb;User=sa;Password=Pass@word;");
-
+            "Server=127.0.0.1,1433;" +
+            "Database=TodoItemsDb;" +
+            "User=sa;" +
+            "Password=Pass@w0rd!;" +
+            "MultipleActiveResultSets=true;" +
+            "TrustServerCertificate=True;");
+        
         return new TodoItemsDbContext(optionsBuilder.Options);
     }
 }
