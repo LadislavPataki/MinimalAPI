@@ -1,3 +1,5 @@
+global using TodoApi.Common;
+
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
 using TodoApi.Features.TodoItems.Endpoints.DeleteTodoItem;
@@ -28,12 +30,8 @@ services.AddDbContext<TodoItemsDbContext>(options =>
         });
 });
 
-// register handlers
-services.AddScoped<CreateTodoItemEndpoint>();
-services.AddScoped<GetTodoItemEndpoint>();
-services.AddScoped<GetTodoItemsEndpoint>();
-services.AddScoped<DeleteTodoItemEndpoint>();
-
+// register endpoint handlers
+services.AddEndpoints();
 
 var app = builder.Build();
 
@@ -43,22 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// map ednpoints
-
-var scope = app.Services.CreateScope();
-
-app.MapPost("/todoitems", (CreateTodoItemRequest request) => 
-    scope.ServiceProvider.GetService<CreateTodoItemEndpoint>()?.HandleAsync(request));
-
-app.MapGet("/todoitems", () => 
-    scope.ServiceProvider.GetService<GetTodoItemsEndpoint>()?.HandleAsync());
-
-app.MapGet("/todoitems/{id}", (int id) => 
-    scope.ServiceProvider.GetService<GetTodoItemEndpoint>()?.HandleAsync(id));
-
-app.MapDelete("/todoitems/{id}", (int id) => 
-    scope.ServiceProvider.GetService<DeleteTodoItemEndpoint>()?.HandleAsync(id));
-
-
+// map endpoints
+app.MapEndpoints();
 
 app.Run();

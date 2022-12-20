@@ -3,7 +3,7 @@ using TodoApi.Infrastructure;
 
 namespace TodoApi.Features.TodoItems.Endpoints.DeleteTodoItem;
 
-public class DeleteTodoItemEndpoint
+public class DeleteTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
 
@@ -12,7 +12,12 @@ public class DeleteTodoItemEndpoint
         _todoItemsDbContext = todoItemsDbContext;
     }
 
-    public async Task<IResult> HandleAsync(int id)
+    public void AddEndpoint(IEndpointRouteBuilder builder)
+    {
+        builder.MapDelete("/todoitems/{id}", (Guid id) => HandleAsync(id));
+    }
+
+    public async Task<IResult> HandleAsync(Guid id)
     {
         var todoToRemove = new Todo()
         {
@@ -22,6 +27,6 @@ public class DeleteTodoItemEndpoint
         _todoItemsDbContext.Todos.Remove(todoToRemove);
         await _todoItemsDbContext.SaveChangesAsync();
 
-        return Results.NoContent();
+        return TypedResults.NoContent();
     }
 }

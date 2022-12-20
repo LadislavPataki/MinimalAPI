@@ -2,7 +2,7 @@ using TodoApi.Infrastructure;
 
 namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
 
-public class GetTodoItemEndpoint
+public class GetTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
 
@@ -11,12 +11,17 @@ public class GetTodoItemEndpoint
         _todoItemsDbContext = todoItemsDbContext;
     }
 
-    public async Task<IResult> HandleAsync(int id)
+    public void AddEndpoint(IEndpointRouteBuilder builder)
+    {
+        builder.MapGet("/todoitems/{id}", (Guid id) => HandleAsync(id));
+    }
+
+    public async Task<IResult> HandleAsync(Guid id)
     {
         var todoItem = await _todoItemsDbContext.Todos.FindAsync(id);
 
         if (todoItem is null)
-            return Results.NotFound();
+            return TypedResults.NotFound();
 
         var response = new TodoItem()
         {
@@ -25,13 +30,13 @@ public class GetTodoItemEndpoint
             IsComplete = todoItem.IsComplete
         };
 
-        return Results.Ok(response);
+        return TypedResults.Ok(response);
     }
 }
 
 public class TodoItem
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 }

@@ -3,7 +3,7 @@ using TodoApi.Infrastructure;
 
 namespace TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
 
-public class CreateTodoItemEndpoint
+public class CreateTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
 
@@ -12,10 +12,16 @@ public class CreateTodoItemEndpoint
         _todoItemsDbContext = todoItemsDbContext;
     }
 
+    public void AddEndpoint(IEndpointRouteBuilder builder)
+    {
+        builder.MapPost("/todoitems", (CreateTodoItemRequest request) => HandleAsync(request));
+    }
+
     public async Task<IResult> HandleAsync(CreateTodoItemRequest request)
     {
         var todoItem = new Todo()
         {
+            Id = Guid.NewGuid(),
             Name = request.Name,
             IsComplete = request.IsComplete
         };
@@ -30,7 +36,7 @@ public class CreateTodoItemEndpoint
             IsComplete = todoItem.IsComplete
         };
 
-        return Results.Ok(response);
+        return TypedResults.Ok(response);
     }
 }
 
@@ -42,7 +48,7 @@ public class CreateTodoItemRequest
 
 public class CreateTodoItemResponse
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 }
