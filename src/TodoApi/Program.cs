@@ -1,20 +1,36 @@
 global using TodoApi.Common;
-
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
-using TodoApi.Features.TodoItems.Endpoints.DeleteTodoItem;
-using TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
-using TodoApi.Features.TodoItems.Endpoints.GetTodoItems;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using TodoApi.Infrastructure;
+using TodoApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 var services = builder.Services;
 
+// add api versioning
+services
+    .AddApiVersioning(options =>
+    {
+        options.ReportApiVersions = true;
+    })
+    .AddApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'V";
+        options.SubstituteApiVersionInUrl = true;
+    });
+
+
 // add swagger
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+
+
+// add services for problem details
+services.AddProblemDetails();
 
 // register db context
 services.AddDbContext<TodoItemsDbContext>(options =>
@@ -38,7 +54,18 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        var descriptions = app.DescribeApiVersions();
+
+        // build a swagger endpoint for each discovered API version
+        foreach (var description in descriptions)
+        {
+            var url = $"/swagger/{description.GroupName}/swagger.json";
+            var name = description.GroupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, name);
+        }
+    });
 }
 
 // map endpoints

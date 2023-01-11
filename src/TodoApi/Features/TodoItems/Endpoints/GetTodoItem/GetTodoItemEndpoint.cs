@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using TodoApi.Infrastructure;
 
 namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
@@ -13,7 +14,29 @@ public class GetTodoItemEndpoint : IEndpoint
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/todoitems/{id}", (Guid id) => HandleAsync(id));
+        var apiVersionSet = builder.NewApiVersionSet().ReportApiVersions().Build();
+
+        builder
+            .MapGet("/api/v{version:apiVersion}/todoitems/{id}", (Guid id) => HandleAsync(id))
+            
+            .WithApiVersionSet(apiVersionSet)
+            .HasApiVersion(1)
+
+            .Produces<GetTodoItemResponse>(StatusCodes.Status200OK)
+            .Produces(StatusCodes.Status404NotFound)
+            
+            .WithName("GetTodoItem")
+            .WithTags("TodoItems")
+            .WithSummary("Gets Todo item")
+            .WithDescription("Gets Todo item")
+            .WithOpenApi(operation =>
+            {
+                var parameter = operation.Parameters[0];
+                parameter.Description = "The ID associated with the created Todo";
+
+
+                return operation;
+            });
     }
 
     public async Task<IResult> HandleAsync(Guid id)
@@ -23,7 +46,7 @@ public class GetTodoItemEndpoint : IEndpoint
         if (todoItem is null)
             return TypedResults.NotFound();
 
-        var response = new TodoItem()
+        var response = new GetTodoItemResponse()
         {
             Id = todoItem.Id,
             Name = todoItem.Name,
@@ -34,7 +57,7 @@ public class GetTodoItemEndpoint : IEndpoint
     }
 }
 
-public class TodoItem
+public class GetTodoItemResponse
 {
     public Guid Id { get; set; }
     public string? Name { get; set; }

@@ -1,3 +1,6 @@
+using System.Text.Json;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using TodoApi.Features.TodoItems.DomainModels;
 using TodoApi.Infrastructure;
 
@@ -14,7 +17,66 @@ public class CreateTodoItemEndpoint : IEndpoint
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapPost("/todoitems", (CreateTodoItemRequest request) => HandleAsync(request));
+        var apiVersionSet = builder
+            .NewApiVersionSet()
+            .ReportApiVersions()
+            .Build();
+
+        builder
+            .MapPost("/api/v{version:apiVersion}/todoitems",
+                (
+                    CreateTodoItemRequest request) => HandleAsync(request))
+
+            .WithApiVersionSet(apiVersionSet)
+            .HasApiVersion(1)
+
+            .Accepts<CreateTodoItemRequest>("application/json")
+
+            .Produces<CreateTodoItemResponse>(StatusCodes.Status201Created, "application/json")
+            // .Produces(StatusCodes.Status400BadRequest)
+            // .Produces(StatusCodes.Status409Conflict)
+            // .Produces(StatusCodes.Status422UnprocessableEntity)
+
+            .ProducesValidationProblem(statusCode: StatusCodes.Status400BadRequest)
+            .ProducesValidationProblem(statusCode: StatusCodes.Status409Conflict)
+
+            // .WithName("CreateTodoItem")
+            // .WithTags("TodoItems")
+            // .WithSummary("Creates Todo item")
+            // .WithDescription("Creates Todo item")
+            .WithOpenApi(ConfigureOpenApiOperation);
+    }
+
+    private static OpenApiOperation ConfigureOpenApiOperation(OpenApiOperation operation)
+    {
+        operation.OperationId = "CreateTodoItem";
+        operation.Summary = "Creates Todo item summary";
+        operation.Description = "Creates Todo item description";
+        operation.Tags = new List<OpenApiTag> { new() { Name = "TodoItems" } };
+
+        var openApiRequestBody = operation.RequestBody;
+        openApiRequestBody.Description = "Request body description";
+        openApiRequestBody.Content["application/json"].Example = new OpenApiString(
+            JsonSerializer.Serialize(new CreateTodoItemRequest
+            {
+                Name = "TodoItemName",
+                IsComplete = false
+            }), false, true);
+
+        var openApiCreatedResponse = operation.Responses["201"];
+        openApiCreatedResponse.Description = "Success description";
+        openApiCreatedResponse.Content["application/json"].Example = new OpenApiString(
+            JsonSerializer.Serialize(new CreateTodoItemResponse
+            {
+                Id = Guid.NewGuid(),
+                Name = "TodoItemName",
+                IsComplete = false
+            }), false, true);
+
+        operation.Responses["400"].Description = "Client error description";
+        operation.Responses["409"].Description = "Client error description";
+
+        return operation;
     }
 
     public async Task<IResult> HandleAsync(CreateTodoItemRequest request)
