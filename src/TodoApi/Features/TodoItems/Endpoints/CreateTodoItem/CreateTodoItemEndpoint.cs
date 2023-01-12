@@ -17,19 +17,38 @@ public class CreateTodoItemEndpoint : IEndpoint
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
     {
-        var apiVersionSet = builder
-            .NewApiVersionSet()
-            .ReportApiVersions()
-            .Build();
-
-        builder
-            .MapPost("/api/v{version:apiVersion}/todoitems",
-                (
-                    CreateTodoItemRequest request) => HandleAsync(request))
-
-            .WithApiVersionSet(apiVersionSet)
+        var versionedApiGroup = builder
+            .MapGroup("/")
             .HasApiVersion(1)
+            .HasApiVersion(2);
 
+        versionedApiGroup
+            .MapPost("/todoitems", (CreateTodoItemRequest request) => HandleAsync(request))
+            
+            .MapToApiVersion(1)
+
+            .Accepts<CreateTodoItemRequest>("application/json")
+
+            .Produces<CreateTodoItemResponse>(StatusCodes.Status201Created, "application/json")
+            // .Produces(StatusCodes.Status400BadRequest)
+            // .Produces(StatusCodes.Status409Conflict)
+            // .Produces(StatusCodes.Status422UnprocessableEntity)
+
+            .ProducesValidationProblem(statusCode: StatusCodes.Status400BadRequest)
+            .ProducesValidationProblem(statusCode: StatusCodes.Status409Conflict)
+
+            // .WithName("CreateTodoItem")
+            // .WithTags("TodoItems")
+            // .WithSummary("Creates Todo item")
+            // .WithDescription("Creates Todo item")
+            .WithOpenApi(ConfigureOpenApiOperation);
+
+        versionedApiGroup
+            .MapPost("/todoitems",
+                (CreateTodoItemRequest request) => HandleAsync(request))
+            
+            .MapToApiVersion(2)
+            
             .Accepts<CreateTodoItemRequest>("application/json")
 
             .Produces<CreateTodoItemResponse>(StatusCodes.Status201Created, "application/json")

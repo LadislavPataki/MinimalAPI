@@ -14,17 +14,21 @@ public class GetTodoItemEndpoint : IEndpoint
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
     {
-        var apiVersionSet = builder.NewApiVersionSet().ReportApiVersions().Build();
-
-        builder
-            .MapGet("/api/v{version:apiVersion}/todoitems/{id}", (Guid id) => HandleAsync(id))
-            
-            .WithApiVersionSet(apiVersionSet)
+        var versionedApiGroup = builder
+            .MapGroup("/")
             .HasApiVersion(1)
+            .HasApiVersion(2);
+
+        versionedApiGroup
+            .MapGet("/todoitems/{id}", (
+                Guid id) => HandleAsync(id))
+
+            .MapToApiVersion(1)
+            .MapToApiVersion(2)
 
             .Produces<GetTodoItemResponse>(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status404NotFound)
-            
+
             .WithName("GetTodoItem")
             .WithTags("TodoItems")
             .WithSummary("Gets Todo item")

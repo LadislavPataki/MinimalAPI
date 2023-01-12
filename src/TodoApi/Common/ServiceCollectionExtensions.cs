@@ -25,11 +25,14 @@ public static class WebApplicationExtensions
     {
         var scope = app.Services.CreateScope();
 
+        var versionedEndpointRouteBuilder = app.NewVersionedApi();
+        var versionedApiRouteGroupBuilder = versionedEndpointRouteBuilder.MapGroup("/api/v{version:apiVersion}");
+
         var endpoints = scope.ServiceProvider.GetServices<IEndpoint>();
 
         foreach (var endpoint in endpoints)
         {
-            endpoint.AddEndpoint(app);
+            endpoint.AddEndpoint(versionedApiRouteGroupBuilder);
         }
     }
 }

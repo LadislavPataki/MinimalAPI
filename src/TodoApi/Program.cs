@@ -22,9 +22,9 @@ services
         options.SubstituteApiVersionInUrl = true;
     });
 
+services.AddEndpointsApiExplorer();
 
 // add swagger
-services.AddEndpointsApiExplorer();
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
@@ -51,6 +51,9 @@ services.AddEndpoints();
 
 var app = builder.Build();
 
+// map endpoints
+app.MapEndpoints();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -59,7 +62,7 @@ if (app.Environment.IsDevelopment())
         var descriptions = app.DescribeApiVersions();
 
         // build a swagger endpoint for each discovered API version
-        foreach (var description in descriptions)
+        foreach (var description in descriptions.Reverse())
         {
             var url = $"/swagger/{description.GroupName}/swagger.json";
             var name = description.GroupName.ToUpperInvariant();
@@ -67,8 +70,5 @@ if (app.Environment.IsDevelopment())
         }
     });
 }
-
-// map endpoints
-app.MapEndpoints();
 
 app.Run();

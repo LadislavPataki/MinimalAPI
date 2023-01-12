@@ -20,7 +20,6 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
         foreach (var description in _provider.ApiVersionDescriptions)
         {
             options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
-            
         }
     }
 
@@ -57,7 +56,7 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                 {
                     if (link.Type != "text/html")
                         continue;
-                    
+                        
                     text.AppendLine();
 
                     if (link.Title.HasValue)

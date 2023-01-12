@@ -15,17 +15,20 @@ public class DeleteTodoItemEndpoint : IEndpoint
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
     {
-        var apiVersionSet = builder.NewApiVersionSet().ReportApiVersions().Build();
-
-        builder
-            .MapDelete("/api/v{version:apiVersion}/todoitems/{id}", (Guid id) => HandleAsync(id))
-            
-            .WithApiVersionSet(apiVersionSet)
+        var versionedApiGroup = builder
+            .MapGroup("/")
             .HasApiVersion(1)
-            
+            .HasApiVersion(2);
+
+        versionedApiGroup
+            .MapDelete("/todoitems/{id}", (Guid id) => HandleAsync(id))
+
+            .MapToApiVersion(1)
+            .MapToApiVersion(2)
+
             .Produces(StatusCodes.Status204NoContent)
             .Produces(StatusCodes.Status404NotFound)
-            
+
             .WithName("DeleteTodoItem")
             .WithTags("TodoItems")
             .WithSummary("Deletes Todo item")
@@ -33,7 +36,7 @@ public class DeleteTodoItemEndpoint : IEndpoint
             .WithOpenApi(operation =>
             {
                 return operation;
-            });;
+            });
     }
 
     public async Task<IResult> HandleAsync(Guid id)
