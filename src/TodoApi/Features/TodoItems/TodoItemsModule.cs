@@ -19,11 +19,10 @@ public class TodoItemsModule : IModule
                     //     TelematicsServiceDbContext.MigrationsHistoryTable,
                     //     TelematicsServiceDbContext.DbSchema);
                 });
-            
-            
         });
 
         // maybe add module endpoints here instead of Program.cs
+        // create ITodoItemsModule : IModule marker interface
         //services.AddEndpoints();
         
         return services;

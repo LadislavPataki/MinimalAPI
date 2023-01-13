@@ -27,8 +27,12 @@ public static class ServiceCollectionExtensions
         foreach (var module in modules)
         {
             var instance = Activator.CreateInstance(module) as IModule;
-
             instance?.AddModule(services, configuration);
+            
+            // using static method
+            // var addModuleName = nameof(IModule.AddModule);
+            // var methodInfo = module.GetMethod(addModuleName, BindingFlags.Public | BindingFlags.Static);
+            // methodInfo?.Invoke(null, new object?[] { services, configuration });
         }
 
         return services;
