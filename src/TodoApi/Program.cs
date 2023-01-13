@@ -1,8 +1,6 @@
 global using TodoApi.Common;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using TodoApi.Infrastructure;
 using TodoApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,26 +26,15 @@ services.AddEndpointsApiExplorer();
 services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
-
 // add services for problem details
 services.AddProblemDetails();
 
-// register db context
-services.AddDbContext<TodoItemsDbContext>(options =>
-{
-    var connectionString = configuration.GetConnectionString("TodoItemsDbConnection");
-    options.UseSqlServer(connectionString,
-        sqlServerOptions =>
-        {
-            sqlServerOptions.MigrationsAssembly(typeof(TodoItemsDbContext).Assembly.FullName);
-            // sqlServerOptions.MigrationsHistoryTable(
-            //     TelematicsServiceDbContext.MigrationsHistoryTable,
-            //     TelematicsServiceDbContext.DbSchema);
-        });
-});
+// add modules
+services.AddModules(configuration);
 
-// register endpoint handlers
+// add endpoints
 services.AddEndpoints();
+
 
 var app = builder.Build();
 

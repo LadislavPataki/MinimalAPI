@@ -17,22 +17,20 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
-}
-
-public static class WebApplicationExtensions
-{
-    public static void MapEndpoints(this WebApplication app)
+    
+    public static IServiceCollection AddModules(this IServiceCollection services, IConfiguration configuration)
     {
-        var scope = app.Services.CreateScope();
+        var modules = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(x => typeof(IModule).IsAssignableFrom(x) 
+                        && x is { IsInterface: false, IsAbstract: false });
 
-        var versionedEndpointRouteBuilder = app.NewVersionedApi();
-        var versionedApiRouteGroupBuilder = versionedEndpointRouteBuilder.MapGroup("/api/v{version:apiVersion}");
-
-        var endpoints = scope.ServiceProvider.GetServices<IEndpoint>();
-
-        foreach (var endpoint in endpoints)
+        foreach (var module in modules)
         {
-            endpoint.AddEndpoint(versionedApiRouteGroupBuilder);
+            var instance = Activator.CreateInstance(module) as IModule;
+
+            instance?.AddModule(services, configuration);
         }
+
+        return services;
     }
 }

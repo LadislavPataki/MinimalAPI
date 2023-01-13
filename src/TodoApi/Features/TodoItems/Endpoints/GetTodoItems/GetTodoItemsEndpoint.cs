@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using TodoApi.Infrastructure;
+using TodoApi.Features.TodoItems.Infrastructure.Persistence;
 
 namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItems;
 

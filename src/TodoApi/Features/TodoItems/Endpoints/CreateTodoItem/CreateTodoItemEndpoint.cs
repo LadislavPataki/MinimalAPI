@@ -2,7 +2,7 @@ using System.Text.Json;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using TodoApi.Features.TodoItems.DomainModels;
-using TodoApi.Infrastructure;
+using TodoApi.Features.TodoItems.Infrastructure.Persistence;
 
 namespace TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
 
