@@ -104,6 +104,8 @@ public class RedisCache : IRedisCache
         [DisallowNull] TValue value, 
         TimeSpan absoluteExpirationRelativeToNow)
     {
+        // refactor to use RedisCacheOptions class where we can set options such as Expiration, etc.
+        
         if (key == null) 
             throw new ArgumentNullException(nameof(key));
         
@@ -126,6 +128,19 @@ public class RedisCache : IRedisCache
 
         var absoluteExpirationRelativeToNow = absoluteExpiration.UtcDateTime - _dateTimeProvider.UtcNow;
         await _database.StringSetAsync(key, value.Serialize(), absoluteExpirationRelativeToNow);
+    }
+
+    public async Task UpdateCacheValueAsync<TValue>(
+        string key,
+        TValue value)
+    {
+        if (key == null) 
+            throw new ArgumentNullException(nameof(key));
+        
+        if (value == null) 
+            throw new ArgumentNullException(nameof(value));
+
+        await SetCacheValueAsync(key, value);
     }
 
     public async Task RemoveCacheValueAsync(string key)
