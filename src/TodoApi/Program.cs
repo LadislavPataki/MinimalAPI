@@ -1,6 +1,7 @@
 global using TodoApi.Common;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using TodoApi.Common.DateTime;
 using TodoApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,12 +30,14 @@ services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>(
 // add services for problem details
 services.AddProblemDetails();
 
+// add common services
+services.AddSingleton<IDateTimeProvider, SystemDateTimeProvider>();
+
 // add modules
 services.AddModules(configuration);
 
 // add endpoints
 services.AddEndpoints();
-
 
 var app = builder.Build();
 

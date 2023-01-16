@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using TodoApi.Common.Caching;
 using TodoApi.Features.TodoItems.Infrastructure.Persistence;
 
 namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
@@ -6,10 +7,14 @@ namespace TodoApi.Features.TodoItems.Endpoints.GetTodoItem;
 public class GetTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
+    private readonly IRedisCache _redisCache;
 
-    public GetTodoItemEndpoint(TodoItemsDbContext todoItemsDbContext)
+    public GetTodoItemEndpoint(
+        TodoItemsDbContext todoItemsDbContext,
+        IRedisCache redisCache)
     {
         _todoItemsDbContext = todoItemsDbContext;
+        _redisCache = redisCache;
     }
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
@@ -45,7 +50,15 @@ public class GetTodoItemEndpoint : IEndpoint
 
     public async Task<IResult> HandleAsync(Guid id)
     {
-        var todoItem = await _todoItemsDbContext.Todos.FindAsync(id);
+        // var todoItem = await _todoItemsDbContext.Todos.FindAsync(id);
+
+        var todoItem = await _redisCache.GetOrSetCacheValueAsync(
+            $"TodoItems_{id}",
+            async () =>
+            {
+                return await _todoItemsDbContext.Todos.FindAsync(id);
+            },
+            TimeSpan.FromSeconds(30));
 
         if (todoItem is null)
             return TypedResults.NotFound();

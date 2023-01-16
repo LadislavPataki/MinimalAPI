@@ -4,7 +4,8 @@ namespace TodoApi.Common;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddEndpoints(this IServiceCollection services)
+    public static IServiceCollection 
+        AddEndpoints(this IServiceCollection services)
     {
         var endpoints = Assembly.GetExecutingAssembly().GetTypes()
             .Where(x => typeof(IEndpoint).IsAssignableFrom(x) 
