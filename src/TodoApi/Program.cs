@@ -41,6 +41,9 @@ services.AddEndpoints();
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
+app.UseStatusCodePages();
+
 // map endpoints
 app.MapEndpoints();
 
