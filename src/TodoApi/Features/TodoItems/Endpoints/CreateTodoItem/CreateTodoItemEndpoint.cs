@@ -1,4 +1,5 @@
 using System.Text.Json;
+using FluentValidation;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using TodoApi.Features.TodoItems.DomainModels;
@@ -9,10 +10,14 @@ namespace TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
 public class CreateTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
+    private readonly IValidator<CreateTodoItemRequest> _validator;
 
-    public CreateTodoItemEndpoint(TodoItemsDbContext todoItemsDbContext)
+    public CreateTodoItemEndpoint(
+        TodoItemsDbContext todoItemsDbContext,
+        IValidator<CreateTodoItemRequest> validator)
     {
         _todoItemsDbContext = todoItemsDbContext;
+        _validator = validator;
     }
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
@@ -100,6 +105,15 @@ public class CreateTodoItemEndpoint : IEndpoint
 
     public async Task<IResult> HandleAsync(CreateTodoItemRequest request)
     {
+        var validationResult = await _validator.ValidateAsync(request);
+        
+        if (!validationResult.IsValid) 
+        {
+            return Results.ValidationProblem(
+                validationResult.ToDictionary(), 
+                statusCode: StatusCodes.Status422UnprocessableEntity);
+        }
+
         var todoItem = new Todo()
         {
             Id = Guid.NewGuid(),
@@ -132,4 +146,15 @@ public class CreateTodoItemResponse
     public Guid Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
+}
+
+public class CreateTodoItemRequestValidator : AbstractValidator<CreateTodoItemRequest>
+{
+    public CreateTodoItemRequestValidator()
+    {
+        RuleFor(x => x.Name)
+            .NotEmpty()
+            .MinimumLength(3)
+            .MaximumLength(15);
+    }
 }

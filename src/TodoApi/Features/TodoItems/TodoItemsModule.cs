@@ -1,6 +1,8 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 using TodoApi.Common.Caching;
+using TodoApi.Features.TodoItems.Endpoints.CreateTodoItem;
 using TodoApi.Features.TodoItems.Infrastructure.Persistence;
 
 namespace TodoApi.Features.TodoItems;
@@ -23,6 +25,9 @@ public class TodoItemsModule : IModule
                     //     TelematicsServiceDbContext.DbSchema);
                 });
         });
+        
+        // add validation
+        services.AddScoped<IValidator<CreateTodoItemRequest>, CreateTodoItemRequestValidator>();
 
         // using IDistributedCache interface
         // services.AddStackExchangeRedisCache(options =>
