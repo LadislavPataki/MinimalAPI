@@ -11,7 +11,6 @@ public class CreateTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
     private readonly IValidator<CreateTodoItemRequest> _validator;
-
     public CreateTodoItemEndpoint(
         TodoItemsDbContext todoItemsDbContext,
         IValidator<CreateTodoItemRequest> validator)

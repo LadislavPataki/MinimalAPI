@@ -27,7 +27,8 @@ public class TodoItemsModule : IModule
         });
         
         // add validation
-        services.AddScoped<IValidator<CreateTodoItemRequest>, CreateTodoItemRequestValidator>();
+        //services.AddScoped<IValidator<CreateTodoItemRequest>, CreateTodoItemRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<TodoItemsModule>();
 
         // using IDistributedCache interface
         // services.AddStackExchangeRedisCache(options =>
