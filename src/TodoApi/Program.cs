@@ -32,12 +32,14 @@ services.AddProblemDetails();
 
 // add services for authentication and authorization
 services.AddAuthentication()
-    .AddJwtBearer("dotnet-user-jwts");
+    .AddJwtBearer();
+
 services.AddAuthorization(options =>
     options.AddPolicy("todo:read-write", policyBuilder => policyBuilder
         .RequireAuthenticatedUser()
-        //.RequireRole("admin")
-        .RequireClaim("scope", "todo:read-write"))
+        .RequireRole("admin")
+        .RequireClaim("scope", "todo:readwrite")
+    )
 );
 
 // services.AddAuthorizationBuilder()

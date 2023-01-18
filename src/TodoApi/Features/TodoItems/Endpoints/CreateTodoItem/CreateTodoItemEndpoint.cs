@@ -52,6 +52,7 @@ public class CreateTodoItemEndpoint : IEndpoint
                 (CreateTodoItemRequest request) => HandleAsync(request))
             
             .RequireAuthorization("todo:read-write")
+            //.RequireAuthorization()
             
             .MapToApiVersion(2)
             
@@ -100,6 +101,35 @@ public class CreateTodoItemEndpoint : IEndpoint
 
         operation.Responses["400"].Description = "Client error description";
         operation.Responses["409"].Description = "Client error description";
+
+        // operation.Security = new List<OpenApiSecurityRequirement>()
+        // {
+        //     new()
+        //     {
+        //         {
+        //             new OpenApiSecurityScheme
+        //             {
+        //                 Reference = new OpenApiReference
+        //                 {
+        //                     Type = ReferenceType.SecurityScheme,
+        //                     Id = "BearerAuth"
+        //                 }
+        //             },
+        //             Array.Empty<string>()
+        //         },
+        //         // {
+        //         //     new OpenApiSecurityScheme
+        //         //     {
+        //         //         Reference = new OpenApiReference
+        //         //         {
+        //         //             Type = ReferenceType.SecurityScheme,
+        //         //             Id = "Oauth2"
+        //         //         }
+        //         //     },
+        //         //     new List<string>() { "todo:read-write" }
+        //         // }
+        //     }
+        // };
 
         return operation;
     }

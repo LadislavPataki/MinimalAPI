@@ -22,15 +22,42 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
             options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
         }
 
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+        options.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme()
         {
             Name = "Authorization",
-            Type = SecuritySchemeType.ApiKey,
+            Type = SecuritySchemeType.Http,
             Scheme = "Bearer",
             BearerFormat = "JWT",
             In = ParameterLocation.Header,
-            Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
+            Description = "JWT Authorization header using the Bearer scheme.",
         });
+
+        // options.AddSecurityDefinition("Oauth2", new OpenApiSecurityScheme()
+        // {
+        //     Name = "Authorization",
+        //     Type = SecuritySchemeType.OAuth2,
+        //     Flows = new OpenApiOAuthFlows()
+        //     {
+        //         AuthorizationCode = new OpenApiOAuthFlow()
+        //         {
+        //             AuthorizationUrl = new Uri("https://example.com/oauth/authorize", UriKind.Absolute),
+        //             TokenUrl = new Uri("https://example.com/oauth/token", UriKind.Absolute),
+        //             Scopes = new Dictionary<string, string>
+        //             {
+        //                 { "todo:read-write", "Todo api read-write access" },
+        //                 // { "writeAccess", "Access write operations" }
+        //             }
+        //         }
+        //     },
+        //     Description = "oath2"
+        //     
+        // });
+        //
+        // options.AddSecurityDefinition("OpenID", new OpenApiSecurityScheme()
+        // {
+        //     Type = SecuritySchemeType.OpenIdConnect,
+        //     OpenIdConnectUrl = new Uri("https://example.com/.well-known/openid-configuration", UriKind.Absolute)
+        // });
 
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
@@ -40,11 +67,22 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                        Id = "BearerAuth"
                     }
                 },
                 Array.Empty<string>()
-            }
+            },
+            // {
+            //     new OpenApiSecurityScheme
+            //     {
+            //         Reference = new OpenApiReference
+            //         {
+            //             Type = ReferenceType.SecurityScheme,
+            //             Id = "Oauth2"
+            //         }
+            //     },
+            //     new List<string>() { "todo:read-write" }
+            // }
         });
     }
 
