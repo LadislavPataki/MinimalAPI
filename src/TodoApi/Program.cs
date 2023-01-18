@@ -30,6 +30,22 @@ services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>(
 // add services for problem details
 services.AddProblemDetails();
 
+// add services for authentication and authorization
+services.AddAuthentication()
+    .AddJwtBearer("dotnet-user-jwts");
+services.AddAuthorization(options =>
+    options.AddPolicy("todo:read-write", policyBuilder => policyBuilder
+        .RequireAuthenticatedUser()
+        //.RequireRole("admin")
+        .RequireClaim("scope", "todo:read-write"))
+);
+
+// services.AddAuthorizationBuilder()
+//     .AddPolicy("admin_todos", policy => 
+//         policy
+//             .RequireRole("admin")
+//             .RequireScope("todos_api"));
+
 // add common services
 services.AddSingleton<IDateTimeProvider, SystemDateTimeProvider>();
 
@@ -43,6 +59,11 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();
+
+// it's not necessary to invoke UseAuthentication or UseAuthorization to register the middlewares
+// because WebApplication does this automatically after AddAuthentication or AddAuthorization are called
+app.UseAuthentication();
+app.UseAuthorization();
 
 // map endpoints
 app.MapEndpoints();

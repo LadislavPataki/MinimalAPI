@@ -22,6 +22,8 @@ public class DeleteTodoItemEndpoint : IEndpoint
 
         versionedApiGroup
             .MapDelete("/todoitems/{id}", (Guid id) => HandleAsync(id))
+            
+            .RequireAuthorization("todo:read-write")
 
             .MapToApiVersion(1)
             .MapToApiVersion(2)

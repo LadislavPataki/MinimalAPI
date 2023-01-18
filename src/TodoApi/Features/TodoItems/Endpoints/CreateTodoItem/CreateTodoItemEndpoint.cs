@@ -51,6 +51,8 @@ public class CreateTodoItemEndpoint : IEndpoint
             .MapPost("/todoitems",
                 (CreateTodoItemRequest request) => HandleAsync(request))
             
+            .RequireAuthorization("todo:read-write")
+            
             .MapToApiVersion(2)
             
             .Accepts<CreateTodoItemRequest>("application/json")
