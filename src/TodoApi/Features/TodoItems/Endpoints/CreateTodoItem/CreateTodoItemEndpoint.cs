@@ -1,5 +1,6 @@
 using System.Text.Json;
 using FluentValidation;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using TodoApi.Features.TodoItems.DomainModels;
@@ -11,12 +12,16 @@ public class CreateTodoItemEndpoint : IEndpoint
 {
     private readonly TodoItemsDbContext _todoItemsDbContext;
     private readonly IValidator<CreateTodoItemRequest> _validator;
+    private readonly IOutputCacheStore _outputCacheStore;
+
     public CreateTodoItemEndpoint(
         TodoItemsDbContext todoItemsDbContext,
-        IValidator<CreateTodoItemRequest> validator)
+        IValidator<CreateTodoItemRequest> validator,
+        IOutputCacheStore outputCacheStore)
     {
         _todoItemsDbContext = todoItemsDbContext;
         _validator = validator;
+        _outputCacheStore = outputCacheStore;
     }
 
     public void AddEndpoint(IEndpointRouteBuilder builder)
@@ -27,7 +32,8 @@ public class CreateTodoItemEndpoint : IEndpoint
             .HasApiVersion(2);
 
         versionedApiGroup
-            .MapPost("/todoitems", (CreateTodoItemRequest request) => HandleAsync(request))
+            .MapPost("/todoitems", (CreateTodoItemRequest request, CancellationToken cancellationToken) => 
+                HandleAsync(request, cancellationToken))
             
             .MapToApiVersion(1)
 
@@ -49,7 +55,8 @@ public class CreateTodoItemEndpoint : IEndpoint
 
         versionedApiGroup
             .MapPost("/todoitems",
-                (CreateTodoItemRequest request) => HandleAsync(request))
+                (CreateTodoItemRequest request, CancellationToken cancellationToken) => 
+                    HandleAsync(request, cancellationToken))
             
             .RequireAuthorization("todo:read-write")
             //.RequireAuthorization()
@@ -134,7 +141,7 @@ public class CreateTodoItemEndpoint : IEndpoint
         return operation;
     }
 
-    public async Task<IResult> HandleAsync(CreateTodoItemRequest request)
+    public async Task<IResult> HandleAsync(CreateTodoItemRequest request, CancellationToken cancellationToken)
     {
         var validationResult = await _validator.ValidateAsync(request);
         
@@ -144,6 +151,8 @@ public class CreateTodoItemEndpoint : IEndpoint
                 validationResult.ToDictionary(), 
                 statusCode: StatusCodes.Status422UnprocessableEntity);
         }
+
+        await _outputCacheStore.EvictByTagAsync("todoItems", cancellationToken);
 
         var todoItem = new Todo()
         {

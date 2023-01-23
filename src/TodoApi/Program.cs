@@ -48,6 +48,20 @@ services.AddAuthorization(options =>
 //             .RequireRole("admin")
 //             .RequireScope("todos_api"));
 
+// add output cache services
+// services.AddOutputCache(options =>
+// {
+//     //options.AddBasePolicy();
+//     // options.AddPolicy("nocache", policyBuilder => policyBuilder.NoCache());
+//     // options.AddPolicy("cache5000ms", policyBuilder => policyBuilder.Expire(TimeSpan.FromMilliseconds(5000)));
+//
+//     options.AddBasePolicy(policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(10)));
+//     options.AddPolicy("Expire20", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(20)));
+//     options.AddPolicy("Expire30", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(30)));
+//     
+//     
+// });
+
 // add common services
 services.AddSingleton<IDateTimeProvider, SystemDateTimeProvider>();
 
@@ -64,11 +78,14 @@ app.UseStatusCodePages();
 
 // it's not necessary to invoke UseAuthentication or UseAuthorization to register the middlewares
 // because WebApplication does this automatically after AddAuthentication or AddAuthorization are called
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 // map endpoints
 app.MapEndpoints();
+
+// output caching
+app.UseOutputCache();
 
 if (app.Environment.IsDevelopment())
 {

@@ -33,6 +33,10 @@ public class GetTodoItemEndpoint : IEndpoint
 
             .Produces<GetTodoItemResponse>(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status404NotFound)
+            
+            // .CacheOutput(policyBuilder => policyBuilder
+            //     .SetVaryByRouteValue("id")
+            //     .Expire(TimeSpan.FromSeconds(5)))
 
             .WithName("GetTodoItem")
             .WithTags("TodoItems")

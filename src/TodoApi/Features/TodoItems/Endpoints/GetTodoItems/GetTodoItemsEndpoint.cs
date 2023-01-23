@@ -31,7 +31,11 @@ public class GetTodoItemsEndpoint : IEndpoint
             .MapToApiVersion(2)
 
             .Produces<List<GetTodoItemsResponseItem>>(StatusCodes.Status200OK)
-
+            
+            //.CacheOutput(x => x.Tag("todoItems"))
+            //.CacheOutput()
+            //.CacheOutput("Expire20")
+            
             .WithName("GetTodoItems")
             .WithTags("TodoItems")
             .WithSummary("Gets Todo items")
