@@ -1,4 +1,5 @@
 global using TodoApi.Common;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using TodoApi.Common.DateTime;
@@ -28,7 +29,16 @@ services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOpti
 services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
 // add services for problem details
-services.AddProblemDetails();
+services.AddProblemDetails(options =>
+{
+    // this work only when DefaultProblemDetailsWriter is used
+    options.CustomizeProblemDetails = context =>
+        context.ProblemDetails.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
+});
+
+//services.AddProblemDetails();
+
+
 
 // add services for authentication and authorization
 services.AddAuthentication()
@@ -49,18 +59,18 @@ services.AddAuthorization(options =>
 //             .RequireScope("todos_api"));
 
 // add output cache services
-// services.AddOutputCache(options =>
-// {
-//     //options.AddBasePolicy();
-//     // options.AddPolicy("nocache", policyBuilder => policyBuilder.NoCache());
-//     // options.AddPolicy("cache5000ms", policyBuilder => policyBuilder.Expire(TimeSpan.FromMilliseconds(5000)));
-//
-//     options.AddBasePolicy(policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(10)));
-//     options.AddPolicy("Expire20", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(20)));
-//     options.AddPolicy("Expire30", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(30)));
-//     
-//     
-// });
+services.AddOutputCache(options =>
+{
+    //options.AddBasePolicy();
+    // options.AddPolicy("nocache", policyBuilder => policyBuilder.NoCache());
+    // options.AddPolicy("cache5000ms", policyBuilder => policyBuilder.Expire(TimeSpan.FromMilliseconds(5000)));
+
+    options.AddBasePolicy(policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(10)));
+    options.AddPolicy("Expire20", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(20)));
+    options.AddPolicy("Expire30", policyBuilder => policyBuilder.Expire(TimeSpan.FromSeconds(30)));
+    
+    
+});
 
 // add common services
 services.AddSingleton<IDateTimeProvider, SystemDateTimeProvider>();
@@ -73,7 +83,45 @@ services.AddEndpoints();
 
 var app = builder.Build();
 
-app.UseExceptionHandler();
+
+//app.UseExceptionHandler();
+
+app.UseExceptionHandler(exceptionHandlerApp =>
+{
+    exceptionHandlerApp.Run(async context =>
+    {
+        context.Response.ContentType = "application/problem+json";
+
+        if (context.RequestServices.GetService<IProblemDetailsService>() is { } problemDetailsService)
+        {
+            var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+
+            if (exceptionHandlerFeature?.Error is { } exception)
+            {
+                var statusCode = exception switch
+                {
+                    BadHttpRequestException badHttpRequestException =>
+                    (
+                        badHttpRequestException.StatusCode
+                    ),
+                    _ =>
+                    (
+                        StatusCodes.Status500InternalServerError
+                    )
+                };
+                
+                context.Response.StatusCode = statusCode;
+                
+                // It calls DefaultProblemDetailsWriter.WriteAsync which applies defaults
+                await problemDetailsService.WriteAsync(new ProblemDetailsContext
+                {
+                    HttpContext = context
+                });
+            }
+        }
+    });
+});
+
 app.UseStatusCodePages();
 
 // it's not necessary to invoke UseAuthentication or UseAuthorization to register the middlewares

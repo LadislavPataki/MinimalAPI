@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System.Text.Json;
 using FluentValidation;
 using Microsoft.AspNetCore.OutputCaching;
@@ -58,7 +59,7 @@ public class CreateTodoItemEndpoint : IEndpoint
                 (CreateTodoItemRequest request, CancellationToken cancellationToken) => 
                     HandleAsync(request, cancellationToken))
             
-            .RequireAuthorization("todo:read-write")
+            //.RequireAuthorization("todo:read-write")
             //.RequireAuthorization()
             
             .MapToApiVersion(2)
@@ -143,7 +144,12 @@ public class CreateTodoItemEndpoint : IEndpoint
 
     public async Task<IResult> HandleAsync(CreateTodoItemRequest request, CancellationToken cancellationToken)
     {
-        var validationResult = await _validator.ValidateAsync(request);
+         //throw new NotImplementedException();
+        
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+        
+        //validationResult.Errors.Any(x => x.)
+        //validationResult.Errors.Any(x => x.)
         
         if (!validationResult.IsValid) 
         {
