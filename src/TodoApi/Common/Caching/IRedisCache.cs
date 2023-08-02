@@ -9,6 +9,7 @@ public interface IRedisCache
     Task<TValue?> GetOrSetCacheValueAsync<TValue>(
         string key, 
         Func<Task<TValue>> factory);
+    
     Task SetCacheValueAsync<TValue>(
         string key, 
         [DisallowNull] TValue value);

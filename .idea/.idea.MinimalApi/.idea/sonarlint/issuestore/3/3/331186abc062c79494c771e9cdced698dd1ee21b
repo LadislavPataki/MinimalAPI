@@ -1,0 +1,16 @@
+
+@csharpsquid:S2933”"Make '_myField' 'readonly'.(‡ô˜À8¹™ñÊ•1
+}csharpsquid:S4487“"XRemove this unread private field '_scopedService' or refactor the code to use its value.(‰³î8º™ñÊ•1
+pcsharpsquid:S4487”"RRemove this unread private field '_myField' or refactor the code to use its value.(‡ô˜À
+Scsharpsquid:S1481")Remove the unused local variable 'local'.(É× úÿÿÿÿ8º™ñÊ•1
+Mcsharpsquid:S1481Ÿ"(Remove the unused local variable 'list'.(õ•¾Ç8ĞÂÕÖ•1
+Scsharpsquid:S1481õ")Remove the unused local variable 'local'.(É× úÿÿÿÿ8ò¯ÔÖ•1
+Mcsharpsquid:S1481ÿ"(Remove the unused local variable 'list'.(õ•¾Ç8º™ñÊ•1
+;csharpsquid:S125"Remove this commented out code.(Ú°à¬
+Ccsharpsquid:S125‹"Remove this commented out code.(Ú°à¬8»™ñÊ•1
+Hcsharpsquid:S125Ë"Remove this commented out code.(¼Ï¨ªşÿÿÿÿ8»™ñÊ•1
+Hcsharpsquid:S125Ò"Remove this commented out code.(Ó›”úÿÿÿÿ8»™ñÊ•1
+Hcsharpsquid:S125Õ"Remove this commented out code.(ºÚ±¨ùÿÿÿÿ8¼™ñÊ•1
+Ccsharpsquid:S125„"Remove this commented out code.(Ú°à¬8¼™ñÊ•1
+Ycsharpsquid:S1135"4Complete the task associated to this 'TODO' comment.(ñ‡İÓ8¼™ñÊ•1
+Wcsharpsquid:S1135"4Complete the task associated to this 'TODO' comment.(Ç¾øÄûÿÿÿÿ

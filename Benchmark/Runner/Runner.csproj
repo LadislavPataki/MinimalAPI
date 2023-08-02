@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <TieredPGO>true</TieredPGO>        
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <NoWarn>1701;1702;RCS1090</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <NoWarn>1701;1702;RCS1090</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="BenchmarkDotNet.Artifacts\**" />
+        <None Remove="run.cmd" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\FastEndpointsBench\FEBench.csproj" />
+        <ProjectReference Include="..\MinimalApiReprV2\MinimalApiReprV2.csproj" />
+        <ProjectReference Include="..\MinimalApiReprV3\MinimalApiReprV3.csproj" />
+        <ProjectReference Include="..\MinimalApiRepr\MinimalApiRepr.csproj" />
+        <ProjectReference Include="..\MinimalApiV2\MinimalApiV2.csproj" />
+        <ProjectReference Include="..\MinimalApi\MinimalApi.csproj" />
+        <ProjectReference Include="..\MvcControllers\MvcControllers.csproj" />
+    </ItemGroup>
+
+</Project>

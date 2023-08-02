@@ -1,0 +1,440 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 6 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769
+// command took 1,43s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769
+// command took 3,54s and exited with 0
+// ***** Done, took 00:00:05 (5.09 sec)   *****
+// Found 6 benchmarks:
+//   Benchmarks.FastEndpoints: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.MinimalApi: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.MinimalApiRepr: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.FastEndpointsCodeGen: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.FastEndpointsScopedValidator: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.AspNetCoreMVC: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.FastEndpoints: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2204 2252 --benchmarkName Runner.Benchmarks.FastEndpoints --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 0 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-BGFNKU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 634800.00 ns, 39.6750 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_FastEndpointClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 16
+   at Runner.Benchmarks.FastEndpoints() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 42
+   at BenchmarkDotNet.Autogenerated.Runnable_0.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 200
+   at BenchmarkDotNet.Autogenerated.Runnable_0.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 295
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_0.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 179
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 18696 has exited with code -1.
+
+// ** Remained 5 (83,3 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.MinimalApi: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2464 2460 --benchmarkName Runner.Benchmarks.MinimalApi --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 1 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-BEMBKK(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 332100.00 ns, 20.7563 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_MinimalClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 21
+   at Runner.Benchmarks.MinimalApi() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 55
+   at BenchmarkDotNet.Autogenerated.Runnable_1.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 403
+   at BenchmarkDotNet.Autogenerated.Runnable_1.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 498
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_1.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 382
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 31596 has exited with code -1.
+
+// ** Remained 4 (66,7 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.MinimalApiRepr: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2464 2460 --benchmarkName Runner.Benchmarks.MinimalApiRepr --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 2 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-SVBIHE(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 762600.00 ns, 47.6625 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_MinimalReprClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   at Runner.Benchmarks.MinimalApiRepr() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 68
+   at BenchmarkDotNet.Autogenerated.Runnable_2.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 606
+   at BenchmarkDotNet.Autogenerated.Runnable_2.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 701
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_2.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 585
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 19264 has exited with code -1.
+
+// ** Remained 3 (50,0 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.FastEndpointsCodeGen: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2428 2488 --benchmarkName Runner.Benchmarks.FastEndpointsCodeGen --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 3 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-IUOQVU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 380700.00 ns, 23.7937 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_FECodeGenClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 17
+   at Runner.Benchmarks.FastEndpointsCodeGen() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 81
+   at BenchmarkDotNet.Autogenerated.Runnable_3.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 809
+   at BenchmarkDotNet.Autogenerated.Runnable_3.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 904
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_3.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 788
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 29300 has exited with code -1.
+
+// ** Remained 2 (33,3 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.FastEndpointsScopedValidator: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2164 2528 --benchmarkName Runner.Benchmarks.FastEndpointsScopedValidator --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 4 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-MGPEDX(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 321900.00 ns, 20.1187 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_FEScopedValidatorClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 18
+   at Runner.Benchmarks.FastEndpointsScopedValidator() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 94
+   at BenchmarkDotNet.Autogenerated.Runnable_4.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 1012
+   at BenchmarkDotNet.Autogenerated.Runnable_4.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 1107
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_4.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 991
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 20376 has exited with code -1.
+
+// ** Remained 1 (16,7 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.AspNetCoreMVC: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 5708335c-17a3-46d3-8673-85d52d7cc769.dll --anonymousPipes 2080 2084 --benchmarkName Runner.Benchmarks.AspNetCoreMVC --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 5 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-WKTSPN(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 319500.00 ns, 19.9688 us/op
+
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.TypeInitializationException: The type initializer for 'Runner.Benchmarks' threw an exception.
+ ---> System.ArgumentException: Cannot bind to the target method because its signature is not compatible with that of the delegate type.
+   at System.Delegate.CreateDelegate(Type type, MethodInfo method, Boolean throwOnBindFailure)
+   at WebApplicationExtensions.MapEndpoints(WebApplication app) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 142
+   at Program.<Main>$(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\MinimalApiRepr\Program.cs:line 37
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Testing.DeferredHostBuilder.DeferredHost.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.HostingAbstractionsHostExtensions.Start(IHost host)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHost(IHostBuilder builder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureHostBuilder(IHostBuilder hostBuilder)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.EnsureServer()
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateDefaultClient(Uri baseAddress, DelegatingHandler[] handlers)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient(WebApplicationFactoryClientOptions options)
+   at Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient()
+   at Runner.Benchmarks..cctor() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 22
+   --- End of inner exception stack trace ---
+   at Runner.Benchmarks.get_MvcClient() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 23
+   at Runner.Benchmarks.AspNetCoreMVC() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\Benchmarks.cs:line 107
+   at BenchmarkDotNet.Autogenerated.Runnable_5.<.ctor>b__3_4() in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 1215
+   at BenchmarkDotNet.Autogenerated.Runnable_5.WorkloadActionUnroll(Int64 invokeCount) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 1310
+   at BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   at BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   at BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   at BenchmarkDotNet.Autogenerated.Runnable_5.Run(IHost host, String benchmarkName) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 1194
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args) in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\5708335c-17a3-46d3-8673-85d52d7cc769\5708335c-17a3-46d3-8673-85d52d7cc769.notcs:line 57
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 32444 has exited with code -1.
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2023-07-10 19:05 (0h 0m from now) **
+Successfully reverted power plan (GUID: 381b4222-f694-41f0-9685-ff5bb260df2e FriendlyName: Balanced)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report.csv
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report-github.md
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report.html
+
+// * Detailed results *
+Benchmarks.FastEndpoints: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.MinimalApi: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.MinimalApiRepr: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.FastEndpointsCodeGen: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.FastEndpointsScopedValidator: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+Benchmarks.AspNetCoreMVC: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2; GC = Concurrent Workstation
+There are not any results runs
+
+// * Summary *
+
+BenchmarkDotNet=v0.13.5, OS=Windows 11 (10.0.22621.1928/22H2/2022Update/SunValley2)
+11th Gen Intel Core i7-11390H 3.40GHz, 1 CPU, 8 logical and 4 physical cores
+.NET SDK=7.0.203
+  [Host]     : .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+  Job-IGXSPQ : .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2
+
+InvocationCount=10000  IterationCount=10  LaunchCount=1  
+WarmupCount=1  
+
+|                       Method | Mean | Error | Ratio | RatioSD | Alloc Ratio |
+|----------------------------- |-----:|------:|------:|--------:|------------:|
+|                FastEndpoints |   NA |    NA |     ? |       ? |           ? |
+|                   MinimalApi |   NA |    NA |     ? |       ? |           ? |
+|               MinimalApiRepr |   NA |    NA |     ? |       ? |           ? |
+|         FastEndpointsCodeGen |   NA |    NA |     ? |       ? |           ? |
+| FastEndpointsScopedValidator |   NA |    NA |     ? |       ? |           ? |
+|                AspNetCoreMVC |   NA |    NA |     ? |       ? |           ? |
+
+Benchmarks with issues:
+  Benchmarks.FastEndpoints: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+  Benchmarks.MinimalApi: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+  Benchmarks.MinimalApiRepr: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+  Benchmarks.FastEndpointsCodeGen: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+  Benchmarks.FastEndpointsScopedValidator: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+  Benchmarks.AspNetCoreMVC: Job-IGXSPQ(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+// * Warnings *
+Environment
+  Summary -> Detected error exit code from one of the benchmarks. It might be caused by following antivirus software:
+        - ESET Security (C:\Program Files\ESET\ESET Security\ecmds.exe)
+        - Windows Defender (windowsdefender://)
+Use InProcessEmitToolchain or InProcessNoEmitToolchain to avoid new process creation.
+
+BaselineCustomAnalyzer
+  Summary -> A question mark '?' symbol indicates that it was not possible to compute the (Ratio, RatioSD, Alloc Ratio) column(s) because the baseline value is too close to zero.
+
+// * Legends *
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 ns        : 1 Nanosecond (0.000000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:04 (4.57 sec), executed benchmarks: 6
+
+Global total time: 00:00:09 (9.99 sec), executed benchmarks: 6
+// * Artifacts cleanup *

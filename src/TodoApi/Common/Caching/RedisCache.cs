@@ -36,14 +36,6 @@ public class RedisCache : IRedisCache
     {
         if (key == null) 
             throw new ArgumentNullException(nameof(key));
-        
-        // var redisValue = await _database.StringGetAsync(key);
-        //
-        // if (!redisValue.IsNull)
-        // {
-        //     var serializedValue = redisValue.ToString();
-        //     return serializedValue.Deserialize<TValue>();
-        // }
 
         var value = await GetCacheValueAsync<TValue>(key);
 
@@ -53,18 +45,8 @@ public class RedisCache : IRedisCache
         value = await factory();
 
         await SetCacheValueAsync(key, value ?? throw new InvalidOperationException());
-        
-        // if (value == null) 
-        //     throw new ArgumentNullException(nameof(value));
-        //
-        // await _database.StringSetAsync(key, value.Serialize());
 
         return value;
-
-        // if (await _database.KeyExistsAsync(key))
-        // {
-        //     
-        // }
     }
 
     public async Task<TValue?> GetOrSetCacheValueAsync<TValue>(

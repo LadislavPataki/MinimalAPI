@@ -1,0 +1,536 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 5 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6
+// command took 1,49s and exited with 0
+// start dotnet  build -c Release --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6
+// command took 3,57s and exited with 0
+// ***** Done, took 00:00:05 (5.17 sec)   *****
+// Found 5 benchmarks:
+//   Benchmarks.FastEndpoints: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.MinimalApi: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.MinimalApiReprV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.MinimalApiV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+//   Benchmarks.AspNetCoreMVC: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.FastEndpoints: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 53fb2e1d-53a3-4a48-8466-e99808dfebc6.dll --anonymousPipes 2252 2024 --benchmarkName Runner.Benchmarks.FastEndpoints --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 0 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-ZITDKI(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 257900.00 ns, 16.1187 us/op
+WorkloadJitting  1: 16 op, 690888600.00 ns, 43.1805 ms/op
+
+OverheadWarmup   1: 10000 op, 12800.00 ns, 1.2800 ns/op
+OverheadWarmup   2: 10000 op, 14400.00 ns, 1.4400 ns/op
+OverheadWarmup   3: 10000 op, 15300.00 ns, 1.5300 ns/op
+OverheadWarmup   4: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadWarmup   5: 10000 op, 14700.00 ns, 1.4700 ns/op
+OverheadWarmup   6: 10000 op, 15400.00 ns, 1.5400 ns/op
+OverheadWarmup   7: 10000 op, 15300.00 ns, 1.5300 ns/op
+
+OverheadActual   1: 10000 op, 15800.00 ns, 1.5800 ns/op
+OverheadActual   2: 10000 op, 15400.00 ns, 1.5400 ns/op
+OverheadActual   3: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadActual   4: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual   5: 10000 op, 15700.00 ns, 1.5700 ns/op
+OverheadActual   6: 10000 op, 21800.00 ns, 2.1800 ns/op
+OverheadActual   7: 10000 op, 15300.00 ns, 1.5300 ns/op
+OverheadActual   8: 10000 op, 15700.00 ns, 1.5700 ns/op
+OverheadActual   9: 10000 op, 15200.00 ns, 1.5200 ns/op
+OverheadActual  10: 10000 op, 15400.00 ns, 1.5400 ns/op
+OverheadActual  11: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadActual  12: 10000 op, 1586400.00 ns, 158.6400 ns/op
+OverheadActual  13: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadActual  14: 10000 op, 15600.00 ns, 1.5600 ns/op
+OverheadActual  15: 10000 op, 15300.00 ns, 1.5300 ns/op
+
+WorkloadWarmup   1: 10000 op, 1362743600.00 ns, 136.2744 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 10000 op, 931565900.00 ns, 93.1566 us/op
+WorkloadActual   2: 10000 op, 670100400.00 ns, 67.0100 us/op
+WorkloadActual   3: 10000 op, 486117400.00 ns, 48.6117 us/op
+WorkloadActual   4: 10000 op, 499167400.00 ns, 49.9167 us/op
+WorkloadActual   5: 10000 op, 485991000.00 ns, 48.5991 us/op
+WorkloadActual   6: 10000 op, 565088200.00 ns, 56.5088 us/op
+WorkloadActual   7: 10000 op, 719058400.00 ns, 71.9058 us/op
+WorkloadActual   8: 10000 op, 949405400.00 ns, 94.9405 us/op
+WorkloadActual   9: 10000 op, 1118653800.00 ns, 111.8654 us/op
+WorkloadActual  10: 10000 op, 1192651600.00 ns, 119.2652 us/op
+
+// AfterActualRun
+WorkloadResult   1: 10000 op, 931550500.00 ns, 93.1551 us/op
+WorkloadResult   2: 10000 op, 670085000.00 ns, 67.0085 us/op
+WorkloadResult   3: 10000 op, 486102000.00 ns, 48.6102 us/op
+WorkloadResult   4: 10000 op, 499152000.00 ns, 49.9152 us/op
+WorkloadResult   5: 10000 op, 485975600.00 ns, 48.5976 us/op
+WorkloadResult   6: 10000 op, 565072800.00 ns, 56.5073 us/op
+WorkloadResult   7: 10000 op, 719043000.00 ns, 71.9043 us/op
+WorkloadResult   8: 10000 op, 949390000.00 ns, 94.9390 us/op
+WorkloadResult   9: 10000 op, 1118638400.00 ns, 111.8638 us/op
+WorkloadResult  10: 10000 op, 1192636200.00 ns, 119.2636 us/op
+// GC:  27 27 0 170484672 10000
+// Threading:  20004 1 10000
+
+// AfterAll
+// Benchmark Process 27472 has exited with code 0.
+
+Mean = 76.176 μs, StdErr = 8.479 μs (11.13%), N = 10, StdDev = 26.812 μs
+Min = 48.598 μs, Q1 = 51.563 μs, Median = 69.456 μs, Q3 = 94.493 μs, Max = 119.264 μs
+IQR = 42.930 μs, LowerFence = -12.831 μs, UpperFence = 158.888 μs
+ConfidenceInterval = [35.641 μs; 116.712 μs] (CI 99.9%), Margin = 40.535 μs (53.21% of Mean)
+Skewness = 0.36, Kurtosis = 1.37, MValue = 3.33
+
+// ** Remained 4 (80,0 %) benchmark(s) to run. Estimated finish 2023-07-16 11:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.MinimalApi: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 53fb2e1d-53a3-4a48-8466-e99808dfebc6.dll --anonymousPipes 2252 2024 --benchmarkName Runner.Benchmarks.MinimalApi --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 1 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-VEOZZX(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 344800.00 ns, 21.5500 us/op
+WorkloadJitting  1: 16 op, 812137800.00 ns, 50.7586 ms/op
+
+OverheadWarmup   1: 10000 op, 19600.00 ns, 1.9600 ns/op
+OverheadWarmup   2: 10000 op, 21500.00 ns, 2.1500 ns/op
+OverheadWarmup   3: 10000 op, 19400.00 ns, 1.9400 ns/op
+OverheadWarmup   4: 10000 op, 20500.00 ns, 2.0500 ns/op
+OverheadWarmup   5: 10000 op, 19700.00 ns, 1.9700 ns/op
+
+OverheadActual   1: 10000 op, 19600.00 ns, 1.9600 ns/op
+OverheadActual   2: 10000 op, 19500.00 ns, 1.9500 ns/op
+OverheadActual   3: 10000 op, 19500.00 ns, 1.9500 ns/op
+OverheadActual   4: 10000 op, 19500.00 ns, 1.9500 ns/op
+OverheadActual   5: 10000 op, 19900.00 ns, 1.9900 ns/op
+OverheadActual   6: 10000 op, 19900.00 ns, 1.9900 ns/op
+OverheadActual   7: 10000 op, 19400.00 ns, 1.9400 ns/op
+OverheadActual   8: 10000 op, 19600.00 ns, 1.9600 ns/op
+OverheadActual   9: 10000 op, 19400.00 ns, 1.9400 ns/op
+OverheadActual  10: 10000 op, 31800.00 ns, 3.1800 ns/op
+OverheadActual  11: 10000 op, 56000.00 ns, 5.6000 ns/op
+OverheadActual  12: 10000 op, 19700.00 ns, 1.9700 ns/op
+OverheadActual  13: 10000 op, 19600.00 ns, 1.9600 ns/op
+OverheadActual  14: 10000 op, 21700.00 ns, 2.1700 ns/op
+OverheadActual  15: 10000 op, 21800.00 ns, 2.1800 ns/op
+
+WorkloadWarmup   1: 10000 op, 1901273500.00 ns, 190.1274 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 10000 op, 912214200.00 ns, 91.2214 us/op
+WorkloadActual   2: 10000 op, 620795500.00 ns, 62.0796 us/op
+WorkloadActual   3: 10000 op, 655710700.00 ns, 65.5711 us/op
+WorkloadActual   4: 10000 op, 568890900.00 ns, 56.8891 us/op
+WorkloadActual   5: 10000 op, 630737200.00 ns, 63.0737 us/op
+WorkloadActual   6: 10000 op, 552925800.00 ns, 55.2926 us/op
+WorkloadActual   7: 10000 op, 564923800.00 ns, 56.4924 us/op
+WorkloadActual   8: 10000 op, 625870000.00 ns, 62.5870 us/op
+WorkloadActual   9: 10000 op, 629394400.00 ns, 62.9394 us/op
+WorkloadActual  10: 10000 op, 665426600.00 ns, 66.5427 us/op
+
+// AfterActualRun
+WorkloadResult   1: 10000 op, 620775900.00 ns, 62.0776 us/op
+WorkloadResult   2: 10000 op, 655691100.00 ns, 65.5691 us/op
+WorkloadResult   3: 10000 op, 568871300.00 ns, 56.8871 us/op
+WorkloadResult   4: 10000 op, 630717600.00 ns, 63.0718 us/op
+WorkloadResult   5: 10000 op, 552906200.00 ns, 55.2906 us/op
+WorkloadResult   6: 10000 op, 564904200.00 ns, 56.4904 us/op
+WorkloadResult   7: 10000 op, 625850400.00 ns, 62.5850 us/op
+WorkloadResult   8: 10000 op, 629374800.00 ns, 62.9375 us/op
+WorkloadResult   9: 10000 op, 665407000.00 ns, 66.5407 us/op
+// GC:  27 27 0 173524240 10000
+// Threading:  20004 1 10000
+
+// AfterAll
+// Benchmark Process 24748 has exited with code 0.
+
+Mean = 61.272 μs, StdErr = 1.356 μs (2.21%), N = 9, StdDev = 4.069 μs
+Min = 55.291 μs, Q1 = 56.887 μs, Median = 62.585 μs, Q3 = 63.072 μs, Max = 66.541 μs
+IQR = 6.185 μs, LowerFence = 47.610 μs, UpperFence = 72.349 μs
+ConfidenceInterval = [54.434 μs; 68.111 μs] (CI 99.9%), Margin = 6.838 μs (11.16% of Mean)
+Skewness = -0.28, Kurtosis = 1.34, MValue = 3
+
+// ** Remained 3 (60,0 %) benchmark(s) to run. Estimated finish 2023-07-16 11:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.MinimalApiReprV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 53fb2e1d-53a3-4a48-8466-e99808dfebc6.dll --anonymousPipes 2072 2068 --benchmarkName Runner.Benchmarks.MinimalApiReprV2 --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 2 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-IUGNNI(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 312900.00 ns, 19.5562 us/op
+WorkloadJitting  1: 16 op, 731262000.00 ns, 45.7039 ms/op
+
+OverheadWarmup   1: 10000 op, 17700.00 ns, 1.7700 ns/op
+OverheadWarmup   2: 10000 op, 15600.00 ns, 1.5600 ns/op
+OverheadWarmup   3: 10000 op, 15400.00 ns, 1.5400 ns/op
+OverheadWarmup   4: 10000 op, 16300.00 ns, 1.6300 ns/op
+OverheadWarmup   5: 10000 op, 16600.00 ns, 1.6600 ns/op
+OverheadWarmup   6: 10000 op, 18700.00 ns, 1.8700 ns/op
+OverheadWarmup   7: 10000 op, 16600.00 ns, 1.6600 ns/op
+OverheadWarmup   8: 10000 op, 19000.00 ns, 1.9000 ns/op
+OverheadWarmup   9: 10000 op, 16700.00 ns, 1.6700 ns/op
+
+OverheadActual   1: 10000 op, 18100.00 ns, 1.8100 ns/op
+OverheadActual   2: 10000 op, 18400.00 ns, 1.8400 ns/op
+OverheadActual   3: 10000 op, 16500.00 ns, 1.6500 ns/op
+OverheadActual   4: 10000 op, 16500.00 ns, 1.6500 ns/op
+OverheadActual   5: 10000 op, 19400.00 ns, 1.9400 ns/op
+OverheadActual   6: 10000 op, 20100.00 ns, 2.0100 ns/op
+OverheadActual   7: 10000 op, 19900.00 ns, 1.9900 ns/op
+OverheadActual   8: 10000 op, 22000.00 ns, 2.2000 ns/op
+OverheadActual   9: 10000 op, 18100.00 ns, 1.8100 ns/op
+OverheadActual  10: 10000 op, 18200.00 ns, 1.8200 ns/op
+OverheadActual  11: 10000 op, 34300.00 ns, 3.4300 ns/op
+OverheadActual  12: 10000 op, 18300.00 ns, 1.8300 ns/op
+OverheadActual  13: 10000 op, 18400.00 ns, 1.8400 ns/op
+OverheadActual  14: 10000 op, 17300.00 ns, 1.7300 ns/op
+OverheadActual  15: 10000 op, 17300.00 ns, 1.7300 ns/op
+OverheadActual  16: 10000 op, 17300.00 ns, 1.7300 ns/op
+OverheadActual  17: 10000 op, 17600.00 ns, 1.7600 ns/op
+OverheadActual  18: 10000 op, 16300.00 ns, 1.6300 ns/op
+OverheadActual  19: 10000 op, 16500.00 ns, 1.6500 ns/op
+OverheadActual  20: 10000 op, 16200.00 ns, 1.6200 ns/op
+
+WorkloadWarmup   1: 10000 op, 2205021300.00 ns, 220.5021 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 10000 op, 1158196900.00 ns, 115.8197 us/op
+WorkloadActual   2: 10000 op, 837561100.00 ns, 83.7561 us/op
+WorkloadActual   3: 10000 op, 852598300.00 ns, 85.2598 us/op
+WorkloadActual   4: 10000 op, 842378800.00 ns, 84.2379 us/op
+WorkloadActual   5: 10000 op, 822032600.00 ns, 82.2033 us/op
+WorkloadActual   6: 10000 op, 763387100.00 ns, 76.3387 us/op
+WorkloadActual   7: 10000 op, 754635500.00 ns, 75.4635 us/op
+WorkloadActual   8: 10000 op, 761235400.00 ns, 76.1235 us/op
+WorkloadActual   9: 10000 op, 754504700.00 ns, 75.4505 us/op
+WorkloadActual  10: 10000 op, 776086800.00 ns, 77.6087 us/op
+
+// AfterActualRun
+WorkloadResult   1: 10000 op, 837543000.00 ns, 83.7543 us/op
+WorkloadResult   2: 10000 op, 852580200.00 ns, 85.2580 us/op
+WorkloadResult   3: 10000 op, 842360700.00 ns, 84.2361 us/op
+WorkloadResult   4: 10000 op, 822014500.00 ns, 82.2014 us/op
+WorkloadResult   5: 10000 op, 763369000.00 ns, 76.3369 us/op
+WorkloadResult   6: 10000 op, 754617400.00 ns, 75.4617 us/op
+WorkloadResult   7: 10000 op, 761217300.00 ns, 76.1217 us/op
+WorkloadResult   8: 10000 op, 754486600.00 ns, 75.4487 us/op
+WorkloadResult   9: 10000 op, 776068700.00 ns, 77.6069 us/op
+// GC:  38 38 0 242083120 10000
+// Threading:  20002 2 10000
+
+// AfterAll
+// Benchmark Process 5600 has exited with code 0.
+
+Mean = 79.603 μs, StdErr = 1.387 μs (1.74%), N = 9, StdDev = 4.162 μs
+Min = 75.449 μs, Q1 = 76.122 μs, Median = 77.607 μs, Q3 = 83.754 μs, Max = 85.258 μs
+IQR = 7.633 μs, LowerFence = 64.673 μs, UpperFence = 95.203 μs
+ConfidenceInterval = [72.608 μs; 86.598 μs] (CI 99.9%), Margin = 6.995 μs (8.79% of Mean)
+Skewness = 0.22, Kurtosis = 1, MValue = 3.6
+
+// ** Remained 2 (40,0 %) benchmark(s) to run. Estimated finish 2023-07-16 11:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.MinimalApiV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 53fb2e1d-53a3-4a48-8466-e99808dfebc6.dll --anonymousPipes 2132 2136 --benchmarkName Runner.Benchmarks.MinimalApiV2 --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 3 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-PCYUFO(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 300100.00 ns, 18.7563 us/op
+WorkloadJitting  1: 16 op, 670821800.00 ns, 41.9264 ms/op
+
+OverheadWarmup   1: 10000 op, 15700.00 ns, 1.5700 ns/op
+OverheadWarmup   2: 10000 op, 15300.00 ns, 1.5300 ns/op
+OverheadWarmup   3: 10000 op, 13700.00 ns, 1.3700 ns/op
+OverheadWarmup   4: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadWarmup   5: 10000 op, 16000.00 ns, 1.6000 ns/op
+OverheadWarmup   6: 10000 op, 14600.00 ns, 1.4600 ns/op
+OverheadWarmup   7: 10000 op, 14200.00 ns, 1.4200 ns/op
+OverheadWarmup   8: 10000 op, 16100.00 ns, 1.6100 ns/op
+OverheadWarmup   9: 10000 op, 14500.00 ns, 1.4500 ns/op
+
+OverheadActual   1: 10000 op, 14800.00 ns, 1.4800 ns/op
+OverheadActual   2: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual   3: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadActual   4: 10000 op, 16900.00 ns, 1.6900 ns/op
+OverheadActual   5: 10000 op, 15100.00 ns, 1.5100 ns/op
+OverheadActual   6: 10000 op, 16400.00 ns, 1.6400 ns/op
+OverheadActual   7: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual   8: 10000 op, 14700.00 ns, 1.4700 ns/op
+OverheadActual   9: 10000 op, 17000.00 ns, 1.7000 ns/op
+OverheadActual  10: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual  11: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual  12: 10000 op, 14800.00 ns, 1.4800 ns/op
+OverheadActual  13: 10000 op, 24700.00 ns, 2.4700 ns/op
+OverheadActual  14: 10000 op, 29200.00 ns, 2.9200 ns/op
+OverheadActual  15: 10000 op, 21100.00 ns, 2.1100 ns/op
+OverheadActual  16: 10000 op, 18300.00 ns, 1.8300 ns/op
+OverheadActual  17: 10000 op, 18300.00 ns, 1.8300 ns/op
+OverheadActual  18: 10000 op, 18500.00 ns, 1.8500 ns/op
+OverheadActual  19: 10000 op, 16800.00 ns, 1.6800 ns/op
+OverheadActual  20: 10000 op, 16800.00 ns, 1.6800 ns/op
+
+WorkloadWarmup   1: 10000 op, 1878676700.00 ns, 187.8677 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 10000 op, 866046600.00 ns, 86.6047 us/op
+WorkloadActual   2: 10000 op, 695950500.00 ns, 69.5951 us/op
+WorkloadActual   3: 10000 op, 885532100.00 ns, 88.5532 us/op
+WorkloadActual   4: 10000 op, 838607800.00 ns, 83.8608 us/op
+WorkloadActual   5: 10000 op, 895329800.00 ns, 89.5330 us/op
+WorkloadActual   6: 10000 op, 734732500.00 ns, 73.4732 us/op
+WorkloadActual   7: 10000 op, 801177800.00 ns, 80.1178 us/op
+WorkloadActual   8: 10000 op, 906834300.00 ns, 90.6834 us/op
+WorkloadActual   9: 10000 op, 719648400.00 ns, 71.9648 us/op
+WorkloadActual  10: 10000 op, 746804800.00 ns, 74.6805 us/op
+
+// AfterActualRun
+WorkloadResult   1: 10000 op, 866030000.00 ns, 86.6030 us/op
+WorkloadResult   2: 10000 op, 695933900.00 ns, 69.5934 us/op
+WorkloadResult   3: 10000 op, 885515500.00 ns, 88.5516 us/op
+WorkloadResult   4: 10000 op, 838591200.00 ns, 83.8591 us/op
+WorkloadResult   5: 10000 op, 895313200.00 ns, 89.5313 us/op
+WorkloadResult   6: 10000 op, 734715900.00 ns, 73.4716 us/op
+WorkloadResult   7: 10000 op, 801161200.00 ns, 80.1161 us/op
+WorkloadResult   8: 10000 op, 906817700.00 ns, 90.6818 us/op
+WorkloadResult   9: 10000 op, 719631800.00 ns, 71.9632 us/op
+WorkloadResult  10: 10000 op, 746788200.00 ns, 74.6788 us/op
+// GC:  36 36 0 228881408 10000
+// Threading:  20000 2 10000
+
+// AfterAll
+// Benchmark Process 15964 has exited with code 0.
+
+Mean = 80.905 μs, StdErr = 2.521 μs (3.12%), N = 10, StdDev = 7.974 μs
+Min = 69.593 μs, Q1 = 73.773 μs, Median = 81.988 μs, Q3 = 88.064 μs, Max = 90.682 μs
+IQR = 14.291 μs, LowerFence = 52.337 μs, UpperFence = 109.501 μs
+ConfidenceInterval = [68.850 μs; 92.960 μs] (CI 99.9%), Margin = 12.055 μs (14.90% of Mean)
+Skewness = -0.11, Kurtosis = 1.15, MValue = 3.2
+
+// ** Remained 1 (20,0 %) benchmark(s) to run. Estimated finish 2023-07-16 11:52 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: Benchmarks.AspNetCoreMVC: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet 53fb2e1d-53a3-4a48-8466-e99808dfebc6.dll --anonymousPipes 2060 2024 --benchmarkName Runner.Benchmarks.AspNetCoreMVC --job "InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1" --benchmarkId 4 in C:\Users\lpataki\source\repos\MyProjects\MinimalApi\Benchmark\Runner\bin\Release\net7.0\53fb2e1d-53a3-4a48-8466-e99808dfebc6\bin\Release\net7.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2,AES,BMI1,BMI2,FMA,LZCNT,PCLMUL,POPCNT VectorSize=256
+// Job: Job-SOTVRB(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+
+OverheadJitting  1: 16 op, 301900.00 ns, 18.8687 us/op
+WorkloadJitting  1: 16 op, 659745100.00 ns, 41.2341 ms/op
+
+OverheadWarmup   1: 10000 op, 14500.00 ns, 1.4500 ns/op
+OverheadWarmup   2: 10000 op, 14500.00 ns, 1.4500 ns/op
+OverheadWarmup   3: 10000 op, 14500.00 ns, 1.4500 ns/op
+OverheadWarmup   4: 10000 op, 14700.00 ns, 1.4700 ns/op
+OverheadWarmup   5: 10000 op, 16200.00 ns, 1.6200 ns/op
+OverheadWarmup   6: 10000 op, 14900.00 ns, 1.4900 ns/op
+
+OverheadActual   1: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual   2: 10000 op, 15100.00 ns, 1.5100 ns/op
+OverheadActual   3: 10000 op, 16400.00 ns, 1.6400 ns/op
+OverheadActual   4: 10000 op, 16100.00 ns, 1.6100 ns/op
+OverheadActual   5: 10000 op, 14600.00 ns, 1.4600 ns/op
+OverheadActual   6: 10000 op, 14400.00 ns, 1.4400 ns/op
+OverheadActual   7: 10000 op, 14400.00 ns, 1.4400 ns/op
+OverheadActual   8: 10000 op, 15400.00 ns, 1.5400 ns/op
+OverheadActual   9: 10000 op, 14800.00 ns, 1.4800 ns/op
+OverheadActual  10: 10000 op, 14800.00 ns, 1.4800 ns/op
+OverheadActual  11: 10000 op, 15100.00 ns, 1.5100 ns/op
+OverheadActual  12: 10000 op, 15000.00 ns, 1.5000 ns/op
+OverheadActual  13: 10000 op, 14700.00 ns, 1.4700 ns/op
+OverheadActual  14: 10000 op, 14900.00 ns, 1.4900 ns/op
+OverheadActual  15: 10000 op, 24300.00 ns, 2.4300 ns/op
+
+WorkloadWarmup   1: 10000 op, 2081311200.00 ns, 208.1311 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 10000 op, 1152559900.00 ns, 115.2560 us/op
+WorkloadActual   2: 10000 op, 719179600.00 ns, 71.9180 us/op
+WorkloadActual   3: 10000 op, 732488100.00 ns, 73.2488 us/op
+WorkloadActual   4: 10000 op, 726187700.00 ns, 72.6188 us/op
+WorkloadActual   5: 10000 op, 732266600.00 ns, 73.2267 us/op
+WorkloadActual   6: 10000 op, 719205300.00 ns, 71.9205 us/op
+WorkloadActual   7: 10000 op, 715595400.00 ns, 71.5595 us/op
+WorkloadActual   8: 10000 op, 715842500.00 ns, 71.5842 us/op
+WorkloadActual   9: 10000 op, 716427900.00 ns, 71.6428 us/op
+WorkloadActual  10: 10000 op, 732990500.00 ns, 73.2991 us/op
+
+// AfterActualRun
+WorkloadResult   1: 10000 op, 719164700.00 ns, 71.9165 us/op
+WorkloadResult   2: 10000 op, 732473200.00 ns, 73.2473 us/op
+WorkloadResult   3: 10000 op, 726172800.00 ns, 72.6173 us/op
+WorkloadResult   4: 10000 op, 732251700.00 ns, 73.2252 us/op
+WorkloadResult   5: 10000 op, 719190400.00 ns, 71.9190 us/op
+WorkloadResult   6: 10000 op, 715580500.00 ns, 71.5581 us/op
+WorkloadResult   7: 10000 op, 715827600.00 ns, 71.5828 us/op
+WorkloadResult   8: 10000 op, 716413000.00 ns, 71.6413 us/op
+WorkloadResult   9: 10000 op, 732975600.00 ns, 73.2976 us/op
+// GC:  38 38 0 241441344 10000
+// Threading:  20000 1 10000
+
+// AfterAll
+// Benchmark Process 12876 has exited with code 0.
+
+Mean = 72.334 μs, StdErr = 0.254 μs (0.35%), N = 9, StdDev = 0.761 μs
+Min = 71.558 μs, Q1 = 71.641 μs, Median = 71.919 μs, Q3 = 73.225 μs, Max = 73.298 μs
+IQR = 1.584 μs, LowerFence = 69.265 μs, UpperFence = 75.601 μs
+ConfidenceInterval = [71.056 μs; 73.612 μs] (CI 99.9%), Margin = 1.278 μs (1.77% of Mean)
+Skewness = 0.26, Kurtosis = 1.05, MValue = 2
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2023-07-16 11:52 (0h 0m from now) **
+Successfully reverted power plan (GUID: 381b4222-f694-41f0-9685-ff5bb260df2e FriendlyName: Balanced)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report.csv
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report-github.md
+  BenchmarkDotNet.Artifacts\results\Runner.Benchmarks-report.html
+
+// * Detailed results *
+Benchmarks.FastEndpoints: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 76.176 μs, StdErr = 8.479 μs (11.13%), N = 10, StdDev = 26.812 μs
+Min = 48.598 μs, Q1 = 51.563 μs, Median = 69.456 μs, Q3 = 94.493 μs, Max = 119.264 μs
+IQR = 42.930 μs, LowerFence = -12.831 μs, UpperFence = 158.888 μs
+ConfidenceInterval = [35.641 μs; 116.712 μs] (CI 99.9%), Margin = 40.535 μs (53.21% of Mean)
+Skewness = 0.36, Kurtosis = 1.37, MValue = 3.33
+-------------------- Histogram --------------------
+[43.917 μs ;  76.585 μs) | @@@@@@
+[76.585 μs ;  89.876 μs) | 
+[89.876 μs ; 122.543 μs) | @@@@
+---------------------------------------------------
+
+Benchmarks.MinimalApi: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 61.272 μs, StdErr = 1.356 μs (2.21%), N = 9, StdDev = 4.069 μs
+Min = 55.291 μs, Q1 = 56.887 μs, Median = 62.585 μs, Q3 = 63.072 μs, Max = 66.541 μs
+IQR = 6.185 μs, LowerFence = 47.610 μs, UpperFence = 72.349 μs
+ConfidenceInterval = [54.434 μs; 68.111 μs] (CI 99.9%), Margin = 6.838 μs (11.16% of Mean)
+Skewness = -0.28, Kurtosis = 1.34, MValue = 3
+-------------------- Histogram --------------------
+[53.521 μs ; 58.657 μs) | @@@
+[58.657 μs ; 61.741 μs) | 
+[61.741 μs ; 66.877 μs) | @@@@@@
+---------------------------------------------------
+
+Benchmarks.MinimalApiReprV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 79.603 μs, StdErr = 1.387 μs (1.74%), N = 9, StdDev = 4.162 μs
+Min = 75.449 μs, Q1 = 76.122 μs, Median = 77.607 μs, Q3 = 83.754 μs, Max = 85.258 μs
+IQR = 7.633 μs, LowerFence = 64.673 μs, UpperFence = 95.203 μs
+ConfidenceInterval = [72.608 μs; 86.598 μs] (CI 99.9%), Margin = 6.995 μs (8.79% of Mean)
+Skewness = 0.22, Kurtosis = 1, MValue = 3.6
+-------------------- Histogram --------------------
+[73.901 μs ; 79.154 μs) | @@@@@
+[79.154 μs ; 81.103 μs) | 
+[81.103 μs ; 86.356 μs) | @@@@
+---------------------------------------------------
+
+Benchmarks.MinimalApiV2: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 80.905 μs, StdErr = 2.521 μs (3.12%), N = 10, StdDev = 7.974 μs
+Min = 69.593 μs, Q1 = 73.773 μs, Median = 81.988 μs, Q3 = 88.064 μs, Max = 90.682 μs
+IQR = 14.291 μs, LowerFence = 52.337 μs, UpperFence = 109.501 μs
+ConfidenceInterval = [68.850 μs; 92.960 μs] (CI 99.9%), Margin = 12.055 μs (14.90% of Mean)
+Skewness = -0.11, Kurtosis = 1.15, MValue = 3.2
+-------------------- Histogram --------------------
+[67.278 μs ; 76.994 μs) | @@@@
+[76.994 μs ; 82.413 μs) | @
+[82.413 μs ; 92.128 μs) | @@@@@
+---------------------------------------------------
+
+Benchmarks.AspNetCoreMVC: Job-DRNPBU(InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1)
+Runtime = .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2; GC = Concurrent Workstation
+Mean = 72.334 μs, StdErr = 0.254 μs (0.35%), N = 9, StdDev = 0.761 μs
+Min = 71.558 μs, Q1 = 71.641 μs, Median = 71.919 μs, Q3 = 73.225 μs, Max = 73.298 μs
+IQR = 1.584 μs, LowerFence = 69.265 μs, UpperFence = 75.601 μs
+ConfidenceInterval = [71.056 μs; 73.612 μs] (CI 99.9%), Margin = 1.278 μs (1.77% of Mean)
+Skewness = 0.26, Kurtosis = 1.05, MValue = 2
+-------------------- Histogram --------------------
+[71.078 μs ; 73.778 μs) | @@@@@@@@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.13.5, OS=Windows 11 (10.0.22621.1992/22H2/2022Update/SunValley2)
+11th Gen Intel Core i7-11390H 3.40GHz, 1 CPU, 8 logical and 4 physical cores
+.NET SDK=7.0.203
+  [Host]     : .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+  Job-DRNPBU : .NET 7.0.9 (7.0.923.32018), X64 RyuJIT AVX2
+
+InvocationCount=10000  IterationCount=10  LaunchCount=1  
+WarmupCount=1  
+
+|           Method |     Mean |     Error |    StdDev | Ratio | RatioSD |   Gen0 |   Gen1 | Allocated | Alloc Ratio |
+|----------------- |---------:|----------:|----------:|------:|--------:|-------:|-------:|----------:|------------:|
+|    FastEndpoints | 76.18 μs | 40.535 μs | 26.812 μs |  1.00 |    0.00 | 2.7000 | 2.7000 |  16.65 KB |        1.00 |
+|       MinimalApi | 61.27 μs |  6.838 μs |  4.069 μs |  0.93 |    0.24 | 2.7000 | 2.7000 |  16.95 KB |        1.02 |
+| MinimalApiReprV2 | 79.60 μs |  6.995 μs |  4.162 μs |  1.22 |    0.38 | 3.8000 | 3.8000 |  23.64 KB |        1.42 |
+|     MinimalApiV2 | 80.90 μs | 12.055 μs |  7.974 μs |  1.20 |    0.45 | 3.6000 | 3.6000 |  22.35 KB |        1.34 |
+|    AspNetCoreMVC | 72.33 μs |  1.278 μs |  0.761 μs |  1.11 |    0.33 | 3.8000 | 3.8000 |  23.58 KB |        1.42 |
+
+// * Hints *
+Outliers
+  Benchmarks.MinimalApi: InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1       -> 1 outlier  was  removed (91.22 μs)
+  Benchmarks.MinimalApiReprV2: InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1 -> 1 outlier  was  removed (115.82 μs)
+  Benchmarks.AspNetCoreMVC: InvocationCount=10000, IterationCount=10, LaunchCount=1, WarmupCount=1    -> 1 outlier  was  removed (115.26 μs)
+
+// * Legends *
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  StdDev      : Standard deviation of all measurements
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Gen0        : GC Generation 0 collects per 1000 operations
+  Gen1        : GC Generation 1 collects per 1000 operations
+  Allocated   : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 μs        : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:01:00 (60.42 sec), executed benchmarks: 5
+
+Global total time: 00:01:05 (65.82 sec), executed benchmarks: 5
+// * Artifacts cleanup *
